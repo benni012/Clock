@@ -114,7 +114,7 @@ public class Clock {
 				angle = (i / (float) (numCircleVertices - 2)) * 2 * Math.PI;
 				if (inner) {
 					radius = innerRadius;
-				} else {t
+				} else {
 					radius = outerRadius;
 				}
 				float x = ((float) Math.cos(angle) * radius);
@@ -184,16 +184,16 @@ public class Clock {
 		Display.setTitle("Clock");
 		GL11.glMatrixMode(GL11.GL_PROJECTION);
 		GL11.glLoadIdentity();
-		GLU.gluPerspective(45.0f, ((float) width / (float) height), 0.1f, 100.0f); // Calculate The Aspect Ratio Of The Window
+		GLU.gluPerspective(45.0f, ((float) width / (float) height), 0.1f, 100.0f);
 		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		GL11.glLoadIdentity();
 
-		GL11.glShadeModel(GL11.GL_SMOOTH); // Enables Smooth Shading
-		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Black Background
-		GL11.glClearDepth(1.0f); // Depth Buffer Setup
-		GL11.glEnable(GL11.GL_DEPTH_TEST); // Enables Depth Testing
-		GL11.glDepthFunc(GL11.GL_LEQUAL); // The Type Of Depth Test To Do
-		GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST); // Really Nice Perspective Calculations
+		GL11.glShadeModel(GL11.GL_SMOOTH);
+		GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		GL11.glClearDepth(1.0f);
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthFunc(GL11.GL_LEQUAL);
+		GL11.glHint(GL11.GL_PERSPECTIVE_CORRECTION_HINT, GL11.GL_NICEST);
 	}
 
 	private void poll() {}
@@ -247,7 +247,7 @@ public class Clock {
 		GL11.glLoadIdentity();
 
 
-		//Set the origin to that point
+		//Set the origin to that poit
 		GL11.glTranslatef(0.0f, 0.0f, -60.0f);
 		GL11.glRotatef(hAngle, 0.0f, 1.0f, 0.0f);
 		GL11.glRotatef(vAngle, 1.0f, 0.0f, 0.0f);
@@ -266,10 +266,11 @@ public class Clock {
 		//Draw the pointers
 		long secs = c.get(Calendar.HOUR) * 3600 + c.get(Calendar.MINUTE) * 60 + c.get(Calendar.SECOND);
 		drawPointers(secs / 3600f, c.get(Calendar.MINUTE), c.get(Calendar.SECOND));
-
+		
 		//Draw the point in the middle
 		GL11.glColor3f(0.1f, 0.1f, 0.1f);
 		drawCircle(0.5f, +0.06f);
+
 
 		//Draw the front and the back ring
 		GL11.glColor3f(0.6f, 0.6f, 0.6f);
