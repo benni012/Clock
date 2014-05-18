@@ -21,7 +21,8 @@ public class Clock {
 
 	public void start() {
 		try {
-			Display.setDisplayMode(new DisplayMode(800, 600));
+			Display.setDisplayMode(new DisplayMode(1024, 768));
+			Display.setFullscreen(true);
 			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
@@ -133,11 +134,15 @@ public class Clock {
 	private void drawPointer(float radius, double angle, float depth, float sRadius) {
 		GL11.glBegin(GL11.GL_QUADS); 
 			angle = fixAngle(angle);
-			float x = ((float) Math.cos(degToRad(angle)) * radius);
-			float y = ((float) Math.sin(degToRad(angle)) * radius);
-			GL11.glVertex3f(x, y, depth);
+			float x1 = ((float) Math.cos(degToRad(angle)) * radius);
+			float y1 = ((float) Math.sin(degToRad(angle)) * radius);
+
+			float x2 = ((float) Math.cos(degToRad(angle - 180)) * 2);
+			float y2 = ((float) Math.sin(degToRad(angle - 180)) * 2);
+
+			GL11.glVertex3f(x1, y1, depth);
 			GL11.glVertex3f((float) Math.cos(degToRad(angle - 45)) * sRadius, (float) Math.sin(degToRad(angle - 45)) * sRadius, depth);
-			GL11.glVertex3f(0f, 0f, depth);
+			GL11.glVertex3f(x2, y2, depth);
 			GL11.glVertex3f((float) Math.cos(degToRad(angle + 45)) * sRadius, (float) Math.sin(degToRad(angle + 45)) * sRadius, depth);
 		GL11.glEnd();
 	}
@@ -168,11 +173,11 @@ public class Clock {
 
 	private void drawPointers(float hours, int minutes, int seconds) {
 		GL11.glColor3f(0.6f, 0f, 0.f);
-		drawPointer(17f, 360 / 60 * seconds, 0.14f, 0.75f);
+		drawPointer(17f, 360 / 60 * seconds, 0.08f, 0.75f);
 		GL11.glColor3f(0.3f, 0.3f, 0.3f);
-		drawPointer(14f, 360 / 60 * minutes, 0.10f, 0.85f);
+		drawPointer(14f, 360 / 60 * minutes, 0.06f, 0.85f);
 		GL11.glColor3f(0.2f, 0.2f, 0.2f);
-		drawPointer(10f, 360 / 12 * hours, 0.12f, 1f);
+		drawPointer(10f, 360 / 12 * hours, 0.07f, 1f);
 	}
 
 	private void init() {
@@ -247,7 +252,7 @@ public class Clock {
 		GL11.glLoadIdentity();
 
 
-		//Set the origin to that poit
+		//Set the origin to that point
 		GL11.glTranslatef(0.0f, 0.0f, -60.0f);
 		GL11.glRotatef(hAngle, 0.0f, 1.0f, 0.0f);
 		GL11.glRotatef(vAngle, 1.0f, 0.0f, 0.0f);
@@ -269,7 +274,7 @@ public class Clock {
 		
 		//Draw the point in the middle
 		GL11.glColor3f(0.1f, 0.1f, 0.1f);
-		drawCircle(0.5f, +0.06f);
+		drawCircle(0.5f, +0.09f);
 
 
 		//Draw the front and the back ring
